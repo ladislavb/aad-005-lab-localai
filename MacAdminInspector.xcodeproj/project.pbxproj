@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 71;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* MacAdminInspectorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000001 /* MacAdminInspectorApp.swift */; };
+		A10000000000000000000002 /* DeviceSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000002 /* DeviceSnapshot.swift */; };
+		A10000000000000000000003 /* NetworkInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000003 /* NetworkInformationService.swift */; };
+		A10000000000000000000004 /* DeviceInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000004 /* DeviceInformationService.swift */; };
+		A10000000000000000000005 /* NetworkSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000005 /* NetworkSnapshot.swift */; };
+		A10000000000000000000008 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000008 /* ContentView.swift */; };
+		A10000000000000000000009 /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000009 /* OverviewView.swift */; };
+		A10000000000000000000010 /* NetworkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000010 /* NetworkView.swift */; };
+		A10000000000000000000011 /* AITools.json in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000011 /* AITools.json */; };
+		A10000000000000000000012 /* WiFiLocationAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000013 /* WiFiLocationAuthorizationService.swift */; };
+		A10000000000000000000013 /* NetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000014 /* NetworkViewModel.swift */; };
+		A10000000000000000000014 /* PublicIPInformationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000015 /* PublicIPInformationService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9439F1493054B4E300808959 /* AGENTS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AGENTS.md; sourceTree = "<group>"; };
+		9439F14A3054B4EE00808959 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		9439F14B3054B4F600808959 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		9439F14D3054B5B500808959 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		A20000000000000000000001 /* MacAdminInspectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAdminInspectorApp.swift; sourceTree = "<group>"; };
+		A20000000000000000000002 /* DeviceSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSnapshot.swift; sourceTree = "<group>"; };
+		A20000000000000000000003 /* NetworkInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInformationService.swift; sourceTree = "<group>"; };
+		A20000000000000000000004 /* DeviceInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformationService.swift; sourceTree = "<group>"; };
+		A20000000000000000000005 /* NetworkSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSnapshot.swift; sourceTree = "<group>"; };
+		A20000000000000000000008 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A20000000000000000000009 /* OverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewView.swift; sourceTree = "<group>"; };
+		A20000000000000000000010 /* NetworkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkView.swift; sourceTree = "<group>"; };
+		A20000000000000000000011 /* AITools.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AITools.json; sourceTree = "<group>"; };
+		A20000000000000000000012 /* MacAdminInspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacAdminInspector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20000000000000000000013 /* WiFiLocationAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiLocationAuthorizationService.swift; sourceTree = "<group>"; };
+		A20000000000000000000014 /* NetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewModel.swift; sourceTree = "<group>"; };
+		A20000000000000000000015 /* PublicIPInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicIPInformationService.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A30000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A40000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				9439F14D3054B5B500808959 /* .gitignore */,
+				A40000000000000000000002 /* MacAdminInspector */,
+				9439F1493054B4E300808959 /* AGENTS.md */,
+				9439F14A3054B4EE00808959 /* LICENSE */,
+				9439F14B3054B4F600808959 /* README.md */,
+				A40000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A40000000000000000000002 /* MacAdminInspector */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000001 /* MacAdminInspectorApp.swift */,
+				A40000000000000000000004 /* Models */,
+				A40000000000000000000005 /* Services */,
+				A40000000000000000000006 /* Views */,
+				A40000000000000000000007 /* Resources */,
+			);
+			path = MacAdminInspector;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000012 /* MacAdminInspector.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000004 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000002 /* DeviceSnapshot.swift */,
+				A20000000000000000000005 /* NetworkSnapshot.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000005 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000004 /* DeviceInformationService.swift */,
+				A20000000000000000000003 /* NetworkInformationService.swift */,
+				A20000000000000000000013 /* WiFiLocationAuthorizationService.swift */,
+				A20000000000000000000014 /* NetworkViewModel.swift */,
+				A20000000000000000000015 /* PublicIPInformationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000006 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000008 /* ContentView.swift */,
+				A20000000000000000000009 /* OverviewView.swift */,
+				A20000000000000000000010 /* NetworkView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A40000000000000000000007 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A20000000000000000000011 /* AITools.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A50000000000000000000001 /* MacAdminInspector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A60000000000000000000001 /* Build configuration list for PBXNativeTarget "MacAdminInspector" */;
+			buildPhases = (
+				A30000000000000000000001 /* Frameworks */,
+				A70000000000000000000001 /* Resources */,
+				A80000000000000000000001 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MacAdminInspector;
+			productName = MacAdminInspector;
+			productReference = A20000000000000000000012 /* MacAdminInspector.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A90000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					A50000000000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A60000000000000000000002 /* Build configuration list for PBXProject "MacAdminInspector" */;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A40000000000000000000001;
+			productRefGroup = A40000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A50000000000000000000001 /* MacAdminInspector */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A70000000000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000011 /* AITools.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A80000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000001 /* MacAdminInspectorApp.swift in Sources */,
+				A10000000000000000000002 /* DeviceSnapshot.swift in Sources */,
+				A10000000000000000000003 /* NetworkInformationService.swift in Sources */,
+				A10000000000000000000004 /* DeviceInformationService.swift in Sources */,
+				A10000000000000000000005 /* NetworkSnapshot.swift in Sources */,
+				A10000000000000000000008 /* ContentView.swift in Sources */,
+				A10000000000000000000009 /* OverviewView.swift in Sources */,
+				A10000000000000000000010 /* NetworkView.swift in Sources */,
+				A10000000000000000000012 /* WiFiLocationAuthorizationService.swift in Sources */,
+				A10000000000000000000013 /* NetworkViewModel.swift in Sources */,
+				A10000000000000000000014 /* PublicIPInformationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA0000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		AA0000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AA0000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Location access is used only to read the current Wi-Fi network details.";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = org.appleadmindays.MacAdminInspector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+			};
+			name = Debug;
+		};
+		AA0000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationUsageDescription = "Location access is used only to read the current Wi-Fi network details.";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = org.appleadmindays.MacAdminInspector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A60000000000000000000001 /* Build configuration list for PBXNativeTarget "MacAdminInspector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000003 /* Debug */,
+				AA0000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A60000000000000000000002 /* Build configuration list for PBXProject "MacAdminInspector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000000000000000000001 /* Debug */,
+				AA0000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A90000000000000000000001 /* Project object */;
+}

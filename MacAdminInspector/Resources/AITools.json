@@ -1,0 +1,26 @@
+{
+  "cliSearchDirectories": [
+    "/opt/homebrew/bin",
+    "/usr/local/bin",
+    "~/.local/bin",
+    "~/.npm-global/bin"
+  ],
+  "tools": [
+    { "id": "chatgpt", "name": "ChatGPT", "category": "assistant", "gui": { "bundleIdentifiers": ["com.openai.chat"] } },
+    { "id": "claude", "name": "Claude", "category": "assistant", "gui": { "bundleIdentifiers": ["com.anthropic.claudefordesktop"] }, "cli": { "executables": ["claude"], "versionArguments": ["--version"] } },
+    { "id": "perplexity", "name": "Perplexity", "category": "assistant", "gui": { "bundleIdentifiers": ["ai.perplexity.mac"] } },
+    { "id": "cursor", "name": "Cursor", "category": "development", "gui": { "bundleIdentifiers": ["com.todesktop.230313mzl4w4u92"] } },
+    { "id": "windsurf", "name": "Windsurf", "category": "development", "gui": { "bundleIdentifiers": ["com.exafunction.windsurf"] } },
+    { "id": "codex", "name": "Codex", "category": "codingAgent", "gui": { "bundleIdentifiers": ["com.openai.chat"] }, "cli": { "executables": ["codex"], "versionArguments": ["--version"] } },
+    { "id": "gemini-cli", "name": "Gemini CLI", "category": "codingAgent", "cli": { "executables": ["gemini"], "versionArguments": ["--version"] } },
+    { "id": "opencode", "name": "OpenCode", "category": "codingAgent", "cli": { "executables": ["opencode"], "searchDirectories": ["~/.opencode/bin"], "versionArguments": ["--version"] } },
+    { "id": "aider", "name": "Aider", "category": "codingAgent", "cli": { "executables": ["aider"], "versionArguments": ["--version"] } },
+    { "id": "goose", "name": "Goose", "category": "codingAgent", "cli": { "executables": ["goose"], "versionArguments": ["--version"] } },
+    { "id": "crush", "name": "Crush", "category": "codingAgent", "cli": { "executables": ["crush"], "versionArguments": ["--version"] } },
+    { "id": "ollama", "name": "Ollama", "category": "localInference", "gui": { "bundleIdentifiers": ["com.ollama.Ollama"] }, "cli": { "executables": ["ollama"], "versionArguments": ["--version"] } },
+    { "id": "lm-studio", "name": "LM Studio", "category": "localInference", "gui": { "bundleIdentifiers": ["com.lmstudio.LMStudio"] } },
+    { "id": "llm", "name": "LLM", "category": "llmUtility", "cli": { "executables": ["llm"], "versionArguments": ["--version"] } },
+    { "id": "fabric", "name": "Fabric", "category": "llmUtility", "cli": { "executables": ["fabric"], "versionArguments": ["--version"] } },
+    { "id": "shell-gpt", "name": "Shell GPT", "category": "llmUtility", "cli": { "executables": ["sgpt"], "versionArguments": ["--version"] } }
+  ]
+}
