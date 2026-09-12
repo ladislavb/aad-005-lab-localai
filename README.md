@@ -27,42 +27,54 @@ Výchozí inventarizace nevyžaduje administrátorská práva, externí účet a
 
 ## Workshop
 
-Každé cvičení řeš samostatně a před zahájením vytvoř commit jako kontrolní bod. Prompt má popsat cíl; přesnou implementaci vždy určuje odkazovaná sekce v [SPECIFICATION.md](SPECIFICATION.md).
+Každé cvičení řeš samostatně a před zahájením vytvoř commit jako kontrolní bod. Prompt určuje cíl; přesné funkční požadavky jsou v [SPECIFICATION.md](SPECIFICATION.md). Všechny uvedené cesty jsou relativní k rootu repozitáře.
 
 ### Cvičení 1 — OpenCode a Exo cluster
 
-Ověř napojení OpenCode na Exo cluster. Nastav OpenCode v Xcode jako agenta a povol jeho MCP integraci.
+Nastav OpenCode jako agenta v Xcode a ověř jeho napojení na Exo cluster a MCP.
 
 ```text
-Ověř, že je OpenCode připojený k Exo clusteru, funguje jako agent v Xcode a má povolenou MCP integraci. Popiš výsledek ověření.
+Pracuj od rootu repozitáře. Přečti `AGENTS.md` a sekci „Cvičení 1 — OpenCode a Exo cluster“ v `SPECIFICATION.md`.
+
+Nakonfiguruj a ověř OpenCode jako agenta v Xcode podle specifikace. Sdílenou konfiguraci ukládej pouze do `opencode.jsonc` v rootu repozitáře; do repozitáře neukládej přihlašovací údaje, tokeny ani API klíče.
+
+Neměň zdrojový kód aplikace. Uveď použitý model, stav připojení k Exo a stav MCP nástrojů nebo konkrétní omezení, které ověření zabránilo.
 ```
 
 ### Cvičení 2 — Bezpečnostní inventarizace
 
-Přidej obrazovku pro místní, pouze čtecí inventarizaci MDM, FileVaultu 2, Application Firewallu včetně jeho detailů, Gatekeeperu a SIP.
+Přidej kartu Security pro MDM, FileVault 2, Application Firewall, Gatekeeper a SIP.
 
 ```text
-Nejdřív si přečti AGENTS.md a SPECIFICATION.md v rootu repozitáře, zejména sekci „Bezpečnostní inventarizace“. SPECIFICATION.md je závazná.
+Pracuj od rootu repozitáře. Přečti `AGENTS.md` a sekci „Cvičení 2 — Bezpečnostní inventarizace“ v `SPECIFICATION.md`.
 
-Před změnami pomocí Xcode MCP prozkoumej aktuální strukturu projektu a otevři existující modely, služby a pohledy související s kartou Security. Neodvozuj názvy ani cesty souborů ze specifikace; pokud soubor nenajdeš, nejdřív jej vyhledej v projektu. Tento průzkum nepovažuj za chybu.
+Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích souborů neodvozuj ze specifikace. Implementuj pouze kartu Security podle jejího datového, zdrojového a UI kontraktu.
 
-Implementuj kartu Security pro lokální, pouze čtecí inventarizaci MDM, FileVault 2, Application Firewallu včetně jeho detailů, Gatekeeperu a SIP. Dodrž datový model, pravidla pro Unavailable a UI smlouvu ze SPECIFICATION.md. Před dokončením porovnej výsledný kód s každým bodem sekce „Bezpečnostní inventarizace“. Neměň konfiguraci Macu, nevyžaduj vyšší oprávnění, nepoužívej síť a po změně sestav schéma MacAdminInspector v Xcode.
+Před dokončením ověř každý zdroj podle specifikace, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
 
 ### Cvičení 3 — Detekce nainstalovaných AI nástrojů
 
-Najdi všechny výskyty GUI aplikací a CLI executables podle katalogu `Resources/AITools.json`.
+Najdi všechny výskyty GUI aplikací a CLI executables podle katalogu.
 
 ```text
-Nejdřív si přečti AGENTS.md, SPECIFICATION.md a celý katalog Resources/AITools.json. Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích souborů neodvozuj ze specifikace. Implementuj pouze cvičení „Detekce nainstalovaných nástrojů“ ze sekce „AI nástroje“ v SPECIFICATION.md. Po změně sestav schéma MacAdminInspector v Xcode.
+Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 3 — Detekce nainstalovaných nástrojů“ v `SPECIFICATION.md` a celý katalog `MacAdminInspector/Resources/AITools.json`.
+
+Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích souborů neodvozuj ze specifikace. Implementuj pouze statickou detekci včetně UI kontraktu.
+
+Ověř nalezené cesty, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
 
 ### Cvičení 4 — Detekce spuštěných AI nástrojů
 
-Doplň ručně spuštěný přehled běžících katalogových nástrojů a jejich parent procesů.
+Doplň ručně obnovený přehled běžících katalogových nástrojů a jejich parent procesů.
 
 ```text
-Nejdřív si přečti AGENTS.md, SPECIFICATION.md a celý katalog Resources/AITools.json. Před změnami prozkoumej aktuální strukturu projektu. Implementuj pouze cvičení „Detekce spuštěných nástrojů“ ze sekce „AI nástroje“ v SPECIFICATION.md. Navazuj na hotové cvičení 3; neměň jeho pravidla statické detekce. Po změně sestav schéma MacAdminInspector v Xcode.
+Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 4 — Detekce spuštěných nástrojů“ v `SPECIFICATION.md` a celý katalog `MacAdminInspector/Resources/AITools.json`.
+
+Před změnami prozkoumej aktuální strukturu projektu. Navazuj na hotové cvičení 3, ale neměň pravidla statické detekce. Implementuj pouze přehled běžících nástrojů a sdílený procesní snapshot podle specifikace.
+
+Ručně ověř obnovení výsledků, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
 
 ### Cvičení 5 — Procesy s MCP metadaty
@@ -70,7 +82,11 @@ Nejdřív si přečti AGENTS.md, SPECIFICATION.md a celý katalog Resources/AITo
 Zobraz procesy, jejichž metadata obsahují `mcp`, spolu s parent procesem.
 
 ```text
-Nejdřív si přečti AGENTS.md a SPECIFICATION.md. Před změnami prozkoumej aktuální strukturu projektu. Implementuj pouze cvičení „Procesy s MCP metadaty“ ze sekce „AI nástroje“ v SPECIFICATION.md. Navazuj na hotové cvičení 4 a znovu nepřebírej procesní snapshot. Neprezentuj výsledek jako potvrzené MCP spojení. Po změně sestav schéma MacAdminInspector v Xcode.
+Pracuj od rootu repozitáře. Přečti `AGENTS.md` a sekci „Cvičení 5 — Procesy s MCP metadaty“ v `SPECIFICATION.md`.
+
+Před změnami prozkoumej aktuální strukturu projektu. Navazuj na hotové cvičení 4 a použij jeho sdílený procesní snapshot; nevytvářej druhé nezávislé čtení procesů.
+
+Výsledek neprezentuj jako potvrzené MCP spojení. Ručně ověř obnovení výsledků, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
 
 ## Dokončení cvičení
