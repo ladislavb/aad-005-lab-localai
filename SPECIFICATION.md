@@ -36,7 +36,7 @@ Karta **Security** obsahuje lokální, pouze čtecí výsledky pro MDM, FileVaul
 
 ### Katalog
 
-Jediným zdrojem produktových metadat je `MacAdminInspector/Resources/AITools.json`. Kořen obsahuje `cliSearchDirectories` a `tools`; nástroj má `id`, `name`, `category` a volitelně `gui` a/nebo `cli`. `gui.bundleIdentifiers` obsahuje bundle ID, `cli.executables` názvy souborů a `cli.searchDirectories` může přepsat kořenové cesty.
+Jediným zdrojem produktových metadat je `MacAdminInspector/Resources/AITools.json`. Kořen obsahuje `cliSearchDirectories` a `tools`; nástroj má `id`, `name`, `category` a volitelně `gui` a/nebo `cli`. `gui.bundleIdentifiers` obsahuje bundle ID a `cli.executables` názvy souborů. Pro CLI je vždy základem `cliSearchDirectories` z kořene; volitelné `cli.searchDirectories` u položky jsou další cesty, které se k němu přidají — nikdy jej nenahrazují. Efektivní seznam je sjednocení obou seznamů bez duplicit.
 
 ### Cvičení 3 — Detekce nainstalovaných nástrojů
 
