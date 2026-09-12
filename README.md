@@ -49,12 +49,28 @@ Před změnami pomocí Xcode MCP prozkoumej aktuální strukturu projektu a otev
 Implementuj kartu Security pro lokální, pouze čtecí inventarizaci MDM, FileVault 2, Application Firewallu včetně jeho detailů, Gatekeeperu a SIP. Dodrž datový model, pravidla pro Unavailable a UI smlouvu ze SPECIFICATION.md. Před dokončením porovnej výsledný kód s každým bodem sekce „Bezpečnostní inventarizace“. Neměň konfiguraci Macu, nevyžaduj vyšší oprávnění, nepoužívej síť a po změně sestav schéma MacAdminInspector v Xcode.
 ```
 
-### Cvičení 3 — Detekce AI nástrojů
+### Cvičení 3 — Detekce nainstalovaných AI nástrojů
 
-Přidej nebo rozšiř detekci nainstalovaných AI nástrojů podle katalogu `Resources/AITools.json`.
+Najdi všechny výskyty GUI aplikací a CLI executables podle katalogu `Resources/AITools.json`.
 
 ```text
-Implementuj detekci AI nástrojů podle sekce „AI nástroje“ v SPECIFICATION.md. Před změnou si přečti AGENTS.md, SPECIFICATION.md a celý katalog Resources/AITools.json.
+Nejdřív si přečti AGENTS.md, SPECIFICATION.md a celý katalog Resources/AITools.json. Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích souborů neodvozuj ze specifikace. Implementuj pouze cvičení „Detekce nainstalovaných nástrojů“ ze sekce „AI nástroje“ v SPECIFICATION.md. Po změně sestav schéma MacAdminInspector v Xcode.
+```
+
+### Cvičení 4 — Detekce spuštěných AI nástrojů
+
+Doplň ručně spuštěný přehled běžících katalogových nástrojů a jejich parent procesů.
+
+```text
+Nejdřív si přečti AGENTS.md, SPECIFICATION.md a celý katalog Resources/AITools.json. Před změnami prozkoumej aktuální strukturu projektu. Implementuj pouze cvičení „Detekce spuštěných nástrojů“ ze sekce „AI nástroje“ v SPECIFICATION.md. Navazuj na hotové cvičení 3; neměň jeho pravidla statické detekce. Po změně sestav schéma MacAdminInspector v Xcode.
+```
+
+### Cvičení 5 — Procesy s MCP metadaty
+
+Zobraz procesy, jejichž metadata obsahují `mcp`, spolu s parent procesem.
+
+```text
+Nejdřív si přečti AGENTS.md a SPECIFICATION.md. Před změnami prozkoumej aktuální strukturu projektu. Implementuj pouze cvičení „Procesy s MCP metadaty“ ze sekce „AI nástroje“ v SPECIFICATION.md. Navazuj na hotové cvičení 4 a znovu nepřebírej procesní snapshot. Neprezentuj výsledek jako potvrzené MCP spojení. Po změně sestav schéma MacAdminInspector v Xcode.
 ```
 
 ## Dokončení cvičení

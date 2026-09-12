@@ -31,14 +31,27 @@ Karta **Security** obsahuje lokální, pouze čtecí výsledky pro MDM, FileVaul
 
 Jediným zdrojem produktových metadat je `MacAdminInspector/Resources/AITools.json`. Kořen obsahuje `cliSearchDirectories` a `tools`; nástroj má `id`, `name`, `category` a volitelně `gui` a/nebo `cli`. `gui.bundleIdentifiers` obsahuje bundle ID, `cli.executables` názvy souborů a `cli.searchDirectories` může přepsat kořenové cesty.
 
-### Detekce
+### Cvičení 3 — Detekce nainstalovaných nástrojů
 
-- Modely jsou v `Models/AIToolCatalog.swift`, logika v jediné `AIToolDetectionService`.
+- Detekuj všechny unikátní výskyty každé katalogové položky. Výskyt obsahuje název, kategorii, metodu a skutečnou cestu; výskyty neslučuj podle produktu.
 - GUI hledej jen přes `NSWorkspace.shared.urlForApplication(withBundleIdentifier:)`. CLI hledej pomocí `FileManager.default.isExecutableFile(atPath:)` v katalogových cestách; `~/` rozbal přes `homeDirectoryForCurrentUser`.
 - U nalezené GUI aplikace s CLI nejdřív ověř `<URL aplikace>/Contents/MacOS/<název z cli.executables>`; potom můžeš rekurzivně procházet jen tento `.app` bundle. Binární název neodvozuj.
-- Nepoužívej shell, `which`, `Process`, `--version`, XPC, síť ani rekurzivní procházení mimo nalezené `.app`.
+- Statická detekce nepoužívá shell, `which`, `Process`, `--version`, XPC, síť ani rekurzivní procházení mimo nalezené `.app`. Nenalezené položky skryj; prázdný výsledek a chybu katalogu zobraz explicitně.
 
-### Stav a výsledek
+### Cvičení 4 — Detekce spuštěných nástrojů
 
-- `AIToolDetectionViewModel` vlastní stav `idle/loading/loaded/error`, výsledky, skutečný počet zkontrolovaných položek a jedinou úlohu skenu. I/O běží mimo MainActor a sken se při dalším otevření neduplikuje.
-- Seznam používá tentýž view model a skrývá nenalezené nástroje. Nález vždy uvádí název, kategorii, metodu a cestu.
+- Běžící GUI aplikace zjišťuj přes `NSWorkspace.runningApplications` a porovnávej jejich bundle ID s katalogem.
+- Běžící CLI procesy a jejich parent procesy zjišťuj samostatnou pouze čtecí službou z jednoho procesního snapshotu. Používá-li služba systémový nástroj, pracuje s ověřenou absolutní cestou a zachytí PID, PPID, executable a argumenty.
+- Katalogový CLI nástroj je běžící jen při jednoznačné shodě s deklarovaným executable; runtime cesta je samostatný výskyt a může odhalit umístění mimo katalogové cesty. Ukaž PID, PPID, executable, parent proces a cestu, je-li zdroj poskytne.
+- Sken se spouští výhradně akcí uživatele; neprováděj polling ani sledování na pozadí. Neúplný nebo nedostupný procesní snapshot ukaž jako omezení, ne jako negativní stav.
+
+### Cvičení 5 — Procesy s MCP metadaty
+
+- Použij procesní snapshot z cvičení 4; nespouštěj druhé nezávislé čtení procesů.
+- Nález vznikne při doslovné shodě `mcp` bez rozlišení velikosti písmen v executable nebo argumentech procesu. Ukaž PID, PPID, executable a parent proces, ale nezobrazuj celé argumenty.
+- Výsledek označ jako `Process metadata contains mcp`. Nepotvrzuje aktivní MCP spojení, konkrétní server ani vlastnictví procesu.
+
+### Společný stav a výsledek
+
+- Každá obrazovka vlastní stav `idle/loading/loaded/error`, výsledky, skutečný počet zkontrolovaných položek a jedinou úlohu skenu. I/O běží mimo MainActor.
+- Při selhání nebo nejednoznačném výsledku zobraz `Unavailable` a zdroj; nesupluj jej odhadem.
