@@ -42,7 +42,11 @@ Ověř, že je OpenCode připojený k Exo clusteru, funguje jako agent v Xcode a
 Přidej obrazovku pro místní, pouze čtecí inventarizaci MDM, FileVaultu 2, Application Firewallu včetně jeho detailů, Gatekeeperu a SIP.
 
 ```text
-Nejdřív si přečti AGENTS.md a SPECIFICATION.md, zejména sekci „Bezpečnostní inventarizace“. SPECIFICATION.md je závazná. Implementuj kartu Security pro lokální, pouze čtecí inventarizaci MDM, FileVault 2, Application Firewallu včetně jeho detailů, Gatekeeperu a SIP. Dodrž datový model, pravidla pro Unavailable a UI smlouvu ze SPECIFICATION.md. Před dokončením porovnej výsledný kód s každým bodem sekce „Bezpečnostní inventarizace“. Neměň konfiguraci Macu, nevyžaduj vyšší oprávnění, nepoužívej síť a po změně sestav schéma MacAdminInspector v Xcode.
+Nejdřív si přečti AGENTS.md a SPECIFICATION.md v rootu repozitáře, zejména sekci „Bezpečnostní inventarizace“. SPECIFICATION.md je závazná.
+
+Před změnami pomocí Xcode MCP prozkoumej aktuální strukturu projektu a otevři existující modely, služby a pohledy související s kartou Security. Neodvozuj názvy ani cesty souborů ze specifikace; pokud soubor nenajdeš, nejdřív jej vyhledej v projektu. Tento průzkum nepovažuj za chybu.
+
+Implementuj kartu Security pro lokální, pouze čtecí inventarizaci MDM, FileVault 2, Application Firewallu včetně jeho detailů, Gatekeeperu a SIP. Dodrž datový model, pravidla pro Unavailable a UI smlouvu ze SPECIFICATION.md. Před dokončením porovnej výsledný kód s každým bodem sekce „Bezpečnostní inventarizace“. Neměň konfiguraci Macu, nevyžaduj vyšší oprávnění, nepoužívej síť a po změně sestav schéma MacAdminInspector v Xcode.
 ```
 
 ### Cvičení 3 — Detekce AI nástrojů
