@@ -48,7 +48,7 @@ Přidej kartu Security pro MDM, FileVault 2, Application Firewall, Gatekeeper a 
 ```text
 Pracuj od rootu repozitáře. Přečti `AGENTS.md` a sekci „Cvičení 2 — Bezpečnostní inventarizace“ v `SPECIFICATION.md`.
 
-Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích souborů neodvozuj ze specifikace. Implementuj pouze kartu Security podle jejího datového, zdrojového a UI kontraktu.
+Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích souborů neodvozuj ze specifikace. Zachovej beze změny existující navigaci a globální vzhled aplikace; uprav pouze obsah karty Security podle jejího datového, zdrojového a UI kontraktu.
 
 Před dokončením ověř každý zdroj podle specifikace, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
@@ -60,7 +60,7 @@ Najdi všechny výskyty GUI aplikací a CLI executables podle katalogu.
 ```text
 Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 3 — Detekce nainstalovaných nástrojů“ v `SPECIFICATION.md` a celý katalog `MacAdminInspector/Resources/AITools.json`.
 
-Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích souborů neodvozuj ze specifikace. Implementuj pouze statickou detekci včetně UI kontraktu.
+Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích souborů neodvozuj ze specifikace. Zachovej beze změny existující navigaci a globální vzhled aplikace; uprav pouze obsah karty AI Tools. Implementuj pouze statickou detekci včetně UI kontraktu.
 
 Ověř nalezené cesty, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
@@ -72,7 +72,7 @@ Doplň ručně obnovený přehled běžících katalogových nástrojů a jejich
 ```text
 Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 4 — Detekce spuštěných nástrojů“ v `SPECIFICATION.md` a celý katalog `MacAdminInspector/Resources/AITools.json`.
 
-Před změnami prozkoumej aktuální strukturu projektu. Navazuj na hotové cvičení 3, ale neměň pravidla statické detekce. Implementuj pouze přehled běžících nástrojů a sdílený procesní snapshot podle specifikace.
+Před změnami prozkoumej aktuální strukturu projektu. Navazuj na hotové cvičení 3, ale neměň pravidla statické detekce, existující navigaci ani globální vzhled aplikace. Uprav pouze obsah karty AI Tools: implementuj přehled běžících nástrojů a sdílený procesní snapshot podle specifikace.
 
 Ručně ověř obnovení výsledků, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
@@ -84,7 +84,7 @@ Zobraz procesy, jejichž metadata obsahují `mcp`, spolu s parent procesem.
 ```text
 Pracuj od rootu repozitáře. Přečti `AGENTS.md` a sekci „Cvičení 5 — Procesy s MCP metadaty“ v `SPECIFICATION.md`.
 
-Před změnami prozkoumej aktuální strukturu projektu. Navazuj na hotové cvičení 4 a použij jeho sdílený procesní snapshot; nevytvářej druhé nezávislé čtení procesů.
+Před změnami prozkoumej aktuální strukturu projektu. Navazuj na hotové cvičení 4 a použij jeho sdílený procesní snapshot; nevytvářej druhé nezávislé čtení procesů. Neměň existující navigaci ani globální vzhled aplikace; uprav pouze obsah karty AI Tools.
 
 Výsledek neprezentuj jako potvrzené MCP spojení. Ručně ověř obnovení výsledků, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
