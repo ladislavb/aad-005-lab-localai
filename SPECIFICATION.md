@@ -36,7 +36,7 @@ Karta **Security** obsahuje lokální, pouze čtecí výsledky pro MDM, FileVaul
 
 ### Katalog
 
-Jediným zdrojem produktových metadat je `MacAdminInspector/Resources/AITools.json`. Kořen obsahuje `cliSearchDirectories` a `tools`; nástroj má `id`, `name`, `category` a volitelně `gui` a/nebo `cli`. `gui.bundleIdentifiers` obsahuje bundle ID a `cli.executables` názvy souborů. Volitelné `cli.versionArguments` je pole neprázdných řetězců pro zjištění verze; není-li uvedeno, použij přesně `["--version"]`. Argumenty jsou statická katalogová data bez interpolace a nikdy neobsahují uživatelský vstup. Pro CLI je vždy základem `cliSearchDirectories` z kořene; volitelné `cli.searchDirectories` u položky jsou další cesty, které se k němu přidají — nikdy jej nenahrazují. Efektivní seznam je sjednocení obou seznamů bez duplicit.
+Jediným zdrojem produktových metadat je `MacAdminInspector/Resources/AITools.json`. Kořen obsahuje `cliSearchDirectories` a `tools`; nástroj má `id`, `name`, `category` a volitelně `gui`, `cli` a/nebo `configSearch`. `gui.bundleIdentifiers` obsahuje bundle ID a `cli.executables` názvy souborů. Volitelné `cli.versionArguments` je pole neprázdných řetězců pro zjištění verze; není-li uvedeno, použij přesně `["--version"]`. Argumenty jsou statická katalogová data bez interpolace a nikdy neobsahují uživatelský vstup. Pro CLI je vždy základem `cliSearchDirectories` z kořene; volitelné `cli.searchDirectories` u položky jsou další cesty, které se k němu přidají — nikdy jej nenahrazují. Efektivní seznam je sjednocení obou seznamů bez duplicit.
 
 ### Cvičení 3 — Detekce nainstalovaných nástrojů a verzí
 
@@ -52,6 +52,32 @@ Jediným zdrojem produktových metadat je `MacAdminInspector/Resources/AITools.j
 - UI používá stejný layout jako Overview a Network: `ScrollView`, obsah s paddingem 32 a `GroupBox` s `Grid` řádky. Nevkládej vlastní velký nadpis. Každý výskyt zobraz v samostatném `GroupBox` v řádcích `Tool`, `Category`, `Method`, `Path` a `Version`; u GUI aplikace doplň `Build`. Pro CLI je `Build` `Unavailable`. Cesta je označitelná. Počet výskytů nesmí označovat za „unique“ a nesmí naznačovat sloučení.
 - První otevření karty spustí právě jeden kompletní scan: statickou detekci, načtení GUI metadat a kontroly CLI verzí. Další kompletní scan spouští uživatel akcí `Refresh` v toolbaru. Stav a jedinou rušitelnou úlohu scanu vlastní view model; pohled přímo nespouští službu ani `Task`.
 - Scan se po spuštění ihned přepne do `loading` a další Refresh je po dobu běhu nedostupný. Snímání souborového systému, čtení bundle metadat, běh CLI a parsování výstupu běží mimo `MainActor`; na něj se vrací pouze hotové neměnné hodnotové modely a konečný stav. Při opuštění obrazovky nebo zániku view modelu scan zruš; zrušený či starší scan nesmí přepsat novější výsledek.
+
+### Cvičení 4 — Lokální revize AI konfigurací
+
+Přidej samostatný panel **AI Configs**. Všechny výsledky jsou externí lokální zdroj: aplikace je nesmí vydávat za lokálně ověřený bezpečnostní stav. Panel nic nespouští, nemění, nenahrává ani nesdílí přes síť.
+
+#### Katalogová data
+
+- Volitelné `configSearch` nástroje obsahuje `paths`, neprázdné pole katalogově deklarovaných adresářů, `recursive`, `includePatterns` a `excludePatterns`. Jednotlivé soubory se vyhledávají jako přesný include pattern v některém z těchto adresářů.
+- Každá cesta v `paths` začíná přesně `~/` nebo `/`. Aplikace rozbalí pouze úvodní `~/` přes `FileManager.default.homeDirectoryForCurrentUser`; odmítne relativní cesty, proměnné prostředí a segment `..`. Pro cestu `~/` musí být `recursive` vždy `false`.
+- `includePatterns` a `excludePatterns` jsou jednoduché globy porovnávané pouze se jménem souboru; podporují jen `*`, nikoli regulární výrazy ani oddělovač cesty. Kandidát musí odpovídat alespoň jednomu include patternu; exclude pattern má vždy přednost. Pro každý nástroj zahrň alespoň `auth.json`, `credentials.json`, `keys.json`, `secrets.yaml`, `.env` a `.env.*` mezi `excludePatterns`.
+- Cesty, přípony, výjimky ani názvy souborů neodvozuj ze jména nástroje. Nástroj bez `configSearch` nemá žádné kandidáty.
+
+#### Hledání a náhled
+
+- Při prvním otevření panelu proveď právě jeden lokální scan; `Refresh` jej provede znovu. Rekurze je povolená pouze pod existujícími katalogovými adresáři, s maximální hloubkou 2, nejvýše 100 kandidáty celkem a nejvýše 64 KiB na soubor.
+- Zpracuj pouze běžný soubor s povolenou příponou. Neprocházej symlinky; po kanonizaci musí každý soubor zůstat uvnitř kanonické deklarované cesty. Chybějící, nečitelný, příliš velký nebo binární soubor zobraz jako `Unavailable` s důvodem.
+- Výsledkový seznam obsahuje `Tool`, `Category`, `Path`, `Format`, `Size` a stav náhledu. Cesta je označitelná; každý výsledek zobrazuje samostatný `GroupBox` ve stejném layoutu jako ostatní inventarizační karty.
+- Obsah načti až po výslovné akci uživatele nad konkrétním souborem. Redigovaný náhled podporuje pouze JSON a JSONC do limitu velikosti; JSONC nejprve převeď na JSON lexerem, který respektuje řetězce, řádkové i blokové komentáře a koncové čárky. YAML a TOML lze evidovat v seznamu, ale jejich náhled zobraz jako `Unavailable` s důvodem `Structured preview unsupported`; nepřidávej závislost jen kvůli jejich parsování.
+- Pro podporovaný obsah vytvoř strukturovaný redigovaný náhled: hodnotu klíče, jehož název po normalizaci obsahuje `token`, `key`, `secret`, `password`, `authorization` nebo `credential`, vždy nahraď textem `REDACTED`. Při neplatném JSON nebo JSONC zobraz `Unavailable` s důvodem.
+- Blokované soubory z `excludePatterns` nikdy nečti ani nezobrazuj. Redakce je ochranná vrstva, ne důkaz absence tajných údajů; proto nikdy nezobrazuj neupravený obsah a náhled označ jako `Redacted local configuration`.
+
+#### Stav a ověření
+
+- Panel vlastní stav `idle/loading/loaded/error`, výsledky, počet zkontrolovaných cest a jedinou rušitelnou úlohu scanu. Snímání adresářů, čtení souborů, parsování a redakce běží mimo `MainActor`; pohled pouze vykresluje model a volá akce view modelu.
+- Během `loading` zakaž další Refresh. Při opuštění panelu nebo zániku view modelu scan zruš; zrušený či starší scan nesmí přepsat novější výsledek.
+- Před dokončením ověř prázdný výsledek, blokovaný soubor, redigovaný klíč, nečitelný nebo neplatný soubor a ruční otevření náhledu. Sestav schéma `MacAdminInspector` a aplikaci spusť.
 
 ### Společný stav a výsledek
 

@@ -6,20 +6,75 @@
     "~/.npm-global/bin"
   ],
   "tools": [
-    { "id": "chatgpt", "name": "ChatGPT", "category": "assistant", "gui": { "bundleIdentifiers": ["com.openai.chat","com.openai.codex"] }, "cli": { "executables": ["codex"], "versionArguments": ["--version"] } },
-    { "id": "claude", "name": "Claude", "category": "assistant", "gui": { "bundleIdentifiers": ["com.anthropic.claudefordesktop"] }, "cli": { "executables": ["claude"], "versionArguments": ["--version"] } },
-    { "id": "perplexity", "name": "Perplexity", "category": "assistant", "gui": { "bundleIdentifiers": ["ai.perplexity.mac"] } },
-    { "id": "cursor", "name": "Cursor", "category": "development", "gui": { "bundleIdentifiers": ["com.todesktop.230313mzl4w4u92"] } },
-    { "id": "windsurf", "name": "Windsurf", "category": "development", "gui": { "bundleIdentifiers": ["com.exafunction.windsurf"] } },
-    { "id": "gemini-cli", "name": "Gemini CLI", "category": "codingAgent", "cli": { "executables": ["gemini"], "versionArguments": ["--version"] } },
-    { "id": "opencode", "name": "OpenCode", "category": "codingAgent", "cli": { "executables": ["opencode"], "searchDirectories": ["~/.opencode/bin"], "versionArguments": ["--version"] } },
-    { "id": "aider", "name": "Aider", "category": "codingAgent", "cli": { "executables": ["aider"], "versionArguments": ["--version"] } },
-    { "id": "goose", "name": "Goose", "category": "codingAgent", "cli": { "executables": ["goose"], "versionArguments": ["--version"] } },
-    { "id": "crush", "name": "Crush", "category": "codingAgent", "cli": { "executables": ["crush"], "versionArguments": ["--version"] } },
-    { "id": "ollama", "name": "Ollama", "category": "localInference", "gui": { "bundleIdentifiers": ["com.ollama.Ollama"] }, "cli": { "executables": ["ollama"], "versionArguments": ["--version"] } },
-    { "id": "lm-studio", "name": "LM Studio", "category": "localInference", "gui": { "bundleIdentifiers": ["com.lmstudio.LMStudio"] } },
-    { "id": "llm", "name": "LLM", "category": "llmUtility", "cli": { "executables": ["llm"], "versionArguments": ["--version"] } },
-    { "id": "fabric", "name": "Fabric", "category": "llmUtility", "cli": { "executables": ["fabric"], "versionArguments": ["--version"] } },
-    { "id": "shell-gpt", "name": "Shell GPT", "category": "llmUtility", "cli": { "executables": ["sgpt"], "versionArguments": ["--version"] } }
+    {
+      "id": "chatgpt",
+      "name": "ChatGPT",
+      "category": "assistant",
+      "gui": {
+        "bundleIdentifiers": [
+          "com.openai.chat",
+          "com.openai.codex"
+        ]
+      },
+      "cli": {
+        "executables": ["codex"],
+        "versionArguments": ["--version"]
+      },
+      "configSearch": {
+        "paths": ["~/.codex"],
+        "recursive": true,
+        "includePatterns": ["*.toml", "*.json", "*.jsonc"],
+        "excludePatterns": ["auth.json", "credentials.json", "keys.json", "secrets.yaml", ".env", ".env.*"]
+      }
+    },
+    {
+      "id": "claude",
+      "name": "Claude",
+      "category": "assistant",
+      "gui": {
+        "bundleIdentifiers": ["com.anthropic.claudefordesktop"]
+      },
+      "cli": {
+        "executables": ["claude"],
+        "versionArguments": ["--version"]
+      },
+      "configSearch": {
+        "paths": ["~/.claude"],
+        "recursive": true,
+        "includePatterns": ["*.json"],
+        "excludePatterns": []
+      }
+    },
+    {
+      "id": "gemini-cli",
+      "name": "Gemini CLI",
+      "category": "codingAgent",
+      "cli": {
+        "executables": ["gemini"],
+        "versionArguments": ["--version"]
+      },
+      "configSearch": {
+        "paths": ["~/.gemini"],
+        "recursive": true,
+        "includePatterns": ["*.json"],
+        "excludePatterns": []
+      }
+    },
+    {
+      "id": "opencode",
+      "name": "OpenCode",
+      "category": "codingAgent",
+      "cli": {
+        "executables": ["opencode"],
+        "searchDirectories": ["~/.opencode/bin"],
+        "versionArguments": ["--version"]
+      },
+      "configSearch": {
+        "paths": ["~/.config/opencode"],
+        "recursive": true,
+        "includePatterns": ["*.json", "*.jsonc"],
+        "excludePatterns": []
+      }
+    }
   ]
 }

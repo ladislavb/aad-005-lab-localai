@@ -65,6 +65,18 @@ Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích soubo
 Ověř nalezené cesty a verze, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
 
+### Cvičení 4 — Lokální revize AI konfigurací
+
+Přidej panel AI Configs pro nalezení a bezpečný náhled lokálních konfigurací katalogových AI nástrojů.
+
+```text
+Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 4 — Lokální revize AI konfigurací“ v `SPECIFICATION.md` a celý katalog `MacAdminInspector/Resources/AITools.json`.
+
+Před změnami prozkoumej aktuální strukturu projektu. Zachovej existující navigaci a globální vzhled; přidej pouze panel AI Configs a jeho obsah podle specifikace. Konfigurační cesty a pravidla hledání přidávej výhradně jako data do `AITools.json`, nikoli do Swiftu.
+
+Funkce je lokální a pouze pro čtení: nic nespouští, nemění ani neodesílá. Ověř nalezené cesty, redakci náhledů a stavy nedostupnosti, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
+```
+
 ## Dokončení cvičení
 
 Po dokončení uveď změněné soubory, výsledek sestavení, ručně ověřenou cestu a systémová omezení. Podrobné akceptační podmínky jsou ve specifikaci.
