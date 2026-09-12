@@ -53,42 +53,16 @@ Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích soubo
 Před dokončením ověř každý zdroj podle specifikace, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
 
-### Cvičení 3 — Detekce nainstalovaných AI nástrojů
+### Cvičení 3 — Detekce nainstalovaných AI nástrojů a verzí
 
-Najdi všechny výskyty GUI aplikací a CLI executables podle katalogu.
-
-```text
-Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 3 — Detekce nainstalovaných nástrojů“ v `SPECIFICATION.md` a celý katalog `MacAdminInspector/Resources/AITools.json`.
-
-Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích souborů neodvozuj ze specifikace. Zachovej beze změny existující navigaci a globální vzhled aplikace; uprav pouze obsah karty AI Tools. Implementuj pouze statickou detekci včetně UI kontraktu.
-
-Ověř nalezené cesty, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
-```
-
-### Cvičení 4 — Verze a podpis nainstalovaných AI nástrojů
-
-Doplň ručně obnovený přehled verzí a podpisů nástrojů nalezených ve cvičení 3.
+Najdi všechny výskyty GUI aplikací a CLI executables podle katalogu a doplň jejich verze.
 
 ```text
-Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 4 — Verze a podpis nainstalovaných nástrojů“ v `SPECIFICATION.md` a celý katalog `MacAdminInspector/Resources/AITools.json`.
+Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 3 — Detekce nainstalovaných nástrojů a verzí“ v `SPECIFICATION.md` a celý katalog `MacAdminInspector/Resources/AITools.json`.
 
-Před změnami prozkoumej aktuální strukturu projektu. Navazuj na hotové cvičení 3, ale neměň pravidla statické detekce, existující navigaci ani globální vzhled aplikace. Uprav pouze obsah karty AI Tools: implementuj přehled verzí a podpisů podle specifikace.
+Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích souborů neodvozuj ze specifikace. Zachovej beze změny existující navigaci a globální vzhled aplikace; uprav pouze obsah karty AI Tools. Implementuj statickou detekci a ověření verzí včetně UI kontraktu.
 
-Refresh nesmí blokovat UI: při kontrole verzí a podpisů zachovej ovladatelnost okna a viditelně zobraz stav načítání. Scan vlastní view model jako jedinou rušitelnou úlohu; služba nesmí běžet na `MainActor` ani z něj synchronně čekat na výsledek. Po dokončení nebo zrušení smí view model zveřejnit pouze výsledek aktuálního scanu.
-
-Ručně ověř obnovení výsledků, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
-```
-
-### Cvičení 5 — Procesy s MCP metadaty
-
-Zobraz procesy, jejichž metadata obsahují `mcp`, spolu s parent procesem.
-
-```text
-Pracuj od rootu repozitáře. Přečti `AGENTS.md` a sekci „Cvičení 5 — Procesy s MCP metadaty“ v `SPECIFICATION.md`.
-
-Před změnami prozkoumej aktuální strukturu projektu. Navazuj na hotové cvičení 4 a použij jeho sdílený procesní snapshot; nevytvářej druhé nezávislé čtení procesů. Neměň existující navigaci ani globální vzhled aplikace; uprav pouze obsah karty AI Tools.
-
-Výsledek neprezentuj jako potvrzené MCP spojení. Ručně ověř obnovení výsledků, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
+Ověř nalezené cesty a verze, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
 
 ## Dokončení cvičení
