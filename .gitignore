@@ -1,1 +1,19 @@
+# macOS
 .DS_Store
+
+# Xcode user data and local workspace state
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+
+# Local Xcode build artifacts
+build/
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM
+*.dSYM.zip
+
+# Swift Package Manager build artifacts
+.build/
