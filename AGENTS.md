@@ -31,6 +31,13 @@ Xcode MCP je jediný autoritativní nástroj pro práci s tímto projektem.
 - Katalog AI nástrojů udržuj jako data: produktová metadata přidávej a upravuj v `Resources/AITools.json`, nikoli přímo ve Swiftu.
 - Funkční a implementační požadavky jednotlivých cvičení jsou v `SPECIFICATION.md`; nezdvojuj je zde.
 
+## Stabilita existujícího UI
+
+- Neměň navigační strukturu, názvy existujících sekcí, hlavní titulky, ikony, velikost okna, toolbar ani globální vizuální styl, pokud to prompt výslovně nepožaduje.
+- Nová nebo upravená funkce smí změnit pouze obsah své dotčené sekce a jen v rozsahu nutném pro cvičení.
+- Před změnou UI si přečti související existující pohledy a převezmi z nich layout, spacing, `GroupBox`, `Grid`, typografii a stavové obrazovky.
+- Neprováděj redesign ani nepřejmenovávej sekce. Nelze-li požadavek splnit bez změny sdíleného UI, zastav se a popiš konkrétní nutnou změnu.
+
 ## Hygiena změn
 
 - Zachovej uživatelské soubory a necommitnuté změny. Nikdy nerestartuj, nezahazuj ani nepřepisuj nesouvisející práci.
