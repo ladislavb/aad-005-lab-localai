@@ -26,6 +26,7 @@
 		9439F14A3054B4EE00808959 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9439F14B3054B4F600808959 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		9439F14D3054B5B500808959 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		9467BAA13055714B008FEDAB /* SPECIFICATION.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = SPECIFICATION.md; sourceTree = "<group>"; };
 		A20000000000000000000001 /* MacAdminInspectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAdminInspectorApp.swift; sourceTree = "<group>"; };
 		A20000000000000000000002 /* DeviceSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSnapshot.swift; sourceTree = "<group>"; };
 		A20000000000000000000003 /* NetworkInformationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInformationService.swift; sourceTree = "<group>"; };
@@ -60,6 +61,7 @@
 				9439F1493054B4E300808959 /* AGENTS.md */,
 				9439F14A3054B4EE00808959 /* LICENSE */,
 				9439F14B3054B4F600808959 /* README.md */,
+				9467BAA13055714B008FEDAB /* SPECIFICATION.md */,
 				A40000000000000000000003 /* Products */,
 			);
 			sourceTree = "<group>";
