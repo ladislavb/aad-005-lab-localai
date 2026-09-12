@@ -1,62 +1,38 @@
-# MacAdminInspector — agent operating rules
+# MacAdminInspector — pravidla pro agenty
 
-MacAdminInspector is a small macOS 14+ SwiftUI lab application. Preserve its
-small scope, local-first behavior, and simple architecture.
+MacAdminInspector je malá SwiftUI lab aplikace pro macOS 14+. Zachovej její omezený rozsah, local-first chování a jednoduchou architekturu.
 
-## Mandatory tool boundary
+## Závazná hranice nástrojů
 
-Xcode MCP is the sole authority for working with this project.
+Xcode MCP je jediný autoritativní nástroj pro práci s tímto projektem.
 
-- Use Xcode MCP to inspect project files, edit Swift and resource files, add or
-  remove files, change target settings, manage schemes, build, test, run, and
-  debug.
-- Do not edit any project-resident file through the shell, a filesystem API, or
-  a generic patch/edit tool. This includes `.swift`, `.json`, `.plist`,
-  `.entitlements`, `.xcodeproj`, `.xcworkspace`, schemes, and build settings.
-- Do not call `xcodebuild`, `swift`, `swiftc`, or other command-line build or
-  debug tools for this project.
-- Do not modify `project.pbxproj` manually. Let Xcode MCP update project
-  membership and build phases.
-- If Xcode MCP is unavailable or cannot perform a required operation, stop and
-  report the blocker. Do not use a direct-edit or command-line workaround.
+- Přes Xcode MCP prohlížej soubory, upravuj Swift a zdroje, přidávej či odebírej soubory, měň nastavení targetu, spravuj schémata, sestavuj, testuj, spouštěj a debuguj.
+- Žádný soubor v projektu neupravuj přes shell, filesystem API ani obecný patchovací či editační nástroj. Týká se to i `.swift`, `.json`, `.plist`, `.entitlements`, `.xcodeproj`, `.xcworkspace`, schémat a build nastavení.
+- Pro tento projekt nevolej `xcodebuild`, `swift`, `swiftc` ani jiné příkazové nástroje pro sestavení či debug.
+- `project.pbxproj` nikdy neměň ručně; členství souborů a build fáze spravuje Xcode MCP.
+- Není-li Xcode MCP dostupné nebo nezvládne potřebnou operaci, zastav se a oznam blokaci. Nepoužívej přímou či příkazovou náhradu.
 
-## Required workflow
+## Povinný postup
 
-1. Inspect the relevant files and target configuration with Xcode MCP before
-   changing anything.
-2. Make the smallest change that fulfils the request. Avoid unrelated cleanup
-   and avoid changing existing user work outside the request.
-3. Build the `MacAdminInspector` scheme with Xcode MCP after every meaningful
-   change. Run relevant tests when they exist.
-4. Resolve errors and warnings introduced by the change before reporting
-   completion.
-5. For UI or runtime behavior changes, run/debug the app with Xcode MCP and
-   verify the affected path when possible.
-6. Report what changed, how it was verified, and any limitation that remains.
+1. Před změnou přes Xcode MCP prohlédni související soubory a konfiguraci targetu.
+2. Proveď nejmenší změnu, která splní požadavek. Neupravuj nesouvisející uživatelskou práci.
+3. Po každé významné změně sestav schéma `MacAdminInspector` přes Xcode MCP; pokud existují relevantní testy, spusť je.
+4. Před dokončením vyřeš chyby a varování vzniklé změnou.
+5. U změny UI či běhového chování aplikaci podle možností spusť nebo debuguj a ověř dotčenou cestu.
+6. Uveď, co se změnilo, jak bylo ověřeno a které omezení případně zůstává.
 
-## Product constraints
+## Produktová pravidla
 
-- Keep the minimum deployment target at macOS 14.0. Use SwiftUI/AppKit APIs
-  available on that target.
-- Device inventory is local and read-only by default. Do not upload inventory,
-  change device configuration, request elevated privileges, or run privileged
-  commands unless the user explicitly requests and authorizes it.
-- Treat externally fetched data as external: name its source in the UI and do
-  not represent it as locally verified system state.
-- Prefer data that macOS returns explicitly. Do not infer a network type,
-  product, ownership, security state, or other classification from names,
-  addresses, paths, or heuristics.
-- Use a focused Foundation service for each inventory source. Views render
-  models and request actions; they contain no filesystem, process, or parsing
-  logic.
-- Treat the AI-tool catalog as data. Add or adjust catalog entries in
-  `Resources/AITools.json`, rather than hard-coding product metadata.
+- Minimum deployment target zůstává macOS 14.0; používej jen odpovídající SwiftUI/AppKit API.
+- Inventarizace zařízení je ve výchozím stavu lokální a pouze pro čtení. Bez výslovného požadavku a schválení uživatele nenahrávej data, neměň konfiguraci, nevyžaduj vyšší oprávnění ani nespouštěj privilegované příkazy.
+- Externě načtená data vždy označ jako externí zdroj a nikdy je nevydávej za lokálně ověřený stav.
+- Upřednostni údaje explicitně vrácené macOS. Neodvozuj typ sítě, produkt, vlastnictví, bezpečnostní stav ani jinou klasifikaci z názvů, adres, cest nebo heuristik.
+- Každý zdroj inventarizace má úzce zaměřenou Foundation službu. View vykreslují modely a vyvolávají akce; neobsahují filesystem, procesní ani parsovací logiku.
+- Katalog AI nástrojů udržuj jako data: produktová metadata přidávej a upravuj v `Resources/AITools.json`, nikoli přímo ve Swiftu.
+- Funkční a implementační požadavky jednotlivých cvičení jsou v `SPECIFICATION.md`; nezdvojuj je zde.
 
-## Change hygiene
+## Hygiena změn
 
-- Preserve user-created files and uncommitted changes. Never reset, discard, or
-  overwrite unrelated work.
-- Do not add dependencies, capabilities, network access, privacy permissions,
-  telemetry, or background behavior without explicit user approval.
-- Keep strings and data models accurate: show `Unavailable` when the source
-  does not return a value rather than substituting a guess.
+- Zachovej uživatelské soubory a necommitnuté změny. Nikdy nerestartuj, nezahazuj ani nepřepisuj nesouvisející práci.
+- Bez výslovného schválení uživatele nepřidávej závislosti, capabilities, síťový přístup, privacy permissions, telemetrii ani chování na pozadí.
+- Řetězce i datové modely udržuj přesné: pokud zdroj hodnotu neposkytne, zobraz `Unavailable`, nikoli odhad.
