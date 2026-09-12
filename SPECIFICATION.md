@@ -30,6 +30,8 @@ Přidej kartu **Security** s lokálními, pouze čtecími výsledky pro MDM, Fil
 - `SecurityView` vždy vykreslí pět pojmenovaných GroupBoxů. Nezobrazuje společný prázdný stav.
 - Neúspěšný zdroj, neznámý výstup nebo nedostatek oprávnění znamená `Unavailable`, nikoli `nil`.
 - Textový výstup normalizuj oříznutím mezer a bez rozlišení velikosti písmen. Jednoznačné hodnoty `true`, `yes`, `on`, `enabled`, `active` nebo `enrolled` mapuj na pozitivní stav; `false`, `no`, `off`, `disabled`, `inactive` nebo `not enrolled` na negativní stav.
+- Při parsování textového výstupu vyhodnocuj pouze hodnotu navázanou na její pojmenované pole; neodvozuj stav z výskytu obecného slova kdekoli ve výstupu. Neobsahuje-li zdroj jednoznačnou hodnotu požadovaného stavu, vrať `Unavailable`.
+- MDM zobrazuje stav zápisu zařízení do MDM, nikoli počet nebo existenci konfiguračních profilů. Stav se nesmí odvozovat ze seznamu profilů.
 - Nejednoznačný text nemapuj; ukaž `Unavailable` se stručným důvodem.
 - Application Firewall zobrazuje globální stav, `Block all incoming connections` a `Stealth mode`. Každou hodnotu zjišťuj a vyhodnocuj samostatně; nedostupná hodnota je `Unavailable`. Nezobrazuj seznam aplikací ani pravidel.
 - Pohledy nespouštějí procesy. Kontroly nesmí měnit konfiguraci, vyžadovat vyšší oprávnění ani používat síť.
