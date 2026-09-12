@@ -65,14 +65,16 @@ Před změnami prozkoumej aktuální strukturu projektu; názvy budoucích soubo
 Ověř nalezené cesty, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
 
-### Cvičení 4 — Detekce spuštěných AI nástrojů
+### Cvičení 4 — Verze a podpis nainstalovaných AI nástrojů
 
-Doplň ručně obnovený přehled běžících katalogových nástrojů a jejich parent procesů.
+Doplň ručně obnovený přehled verzí a podpisů nástrojů nalezených ve cvičení 3.
 
 ```text
-Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 4 — Detekce spuštěných nástrojů“ v `SPECIFICATION.md` a celý katalog `MacAdminInspector/Resources/AITools.json`.
+Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 4 — Verze a podpis nainstalovaných nástrojů“ v `SPECIFICATION.md` a celý katalog `MacAdminInspector/Resources/AITools.json`.
 
-Před změnami prozkoumej aktuální strukturu projektu. Navazuj na hotové cvičení 3, ale neměň pravidla statické detekce, existující navigaci ani globální vzhled aplikace. Uprav pouze obsah karty AI Tools: implementuj přehled běžících nástrojů a sdílený procesní snapshot podle specifikace.
+Před změnami prozkoumej aktuální strukturu projektu. Navazuj na hotové cvičení 3, ale neměň pravidla statické detekce, existující navigaci ani globální vzhled aplikace. Uprav pouze obsah karty AI Tools: implementuj přehled verzí a podpisů podle specifikace.
+
+Refresh nesmí blokovat UI: při kontrole verzí a podpisů zachovej ovladatelnost okna a viditelně zobraz stav načítání. Scan vlastní view model jako jedinou rušitelnou úlohu; služba nesmí běžet na `MainActor` ani z něj synchronně čekat na výsledek. Po dokončení nebo zrušení smí view model zveřejnit pouze výsledek aktuálního scanu.
 
 Ručně ověř obnovení výsledků, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
