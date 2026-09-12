@@ -51,15 +51,25 @@ Jediným zdrojem produktových metadat je `MacAdminInspector/Resources/AITools.j
 ### Cvičení 4 — Detekce spuštěných nástrojů
 
 - Běžící GUI aplikace zjišťuj přes `NSWorkspace.runningApplications` a porovnávej jejich bundle ID s katalogem.
-- Jeden ručně obnovený procesní snapshot poskytuje PID, PPID, executable a argumenty pro cvičení 4 i 5. Pro CLI procesy použij ověřenou absolutní cestu `/bin/ps`; parent proces vyhledej ve stejném snapshotu.
-- Katalogový CLI nástroj je běžící jen při jednoznačné shodě s deklarovaným executable; runtime cesta je samostatný výskyt a může odhalit umístění mimo katalogové cesty. Ukaž PID, PPID, executable, parent proces a cestu, je-li zdroj poskytne.
-- Sken se spouští výhradně akcí uživatele; neprováděj polling ani sledování na pozadí. Neúplný nebo nedostupný procesní snapshot ukaž jako omezení, ne jako negativní stav.
+- Procesní snapshot získáš přes `/bin/ps -eo pid,ppid,comm,args` nebo ekvivalentní systémové API (`sysctl` s `KERN_PROC`). Snapshot obsahuje PID, PPID, executable (basename z `comm` nebo `args[0]`) a plnou cestu k runtime executable z `proc_pidpath()`.
+- CLI nástroj je běžící pokud: (a) jeho executable doslovně odpovídá deklarovanému v katalogu, NEBO (b) jakýkoliv proces v parent chainu (rekurzivně přes PPID) má executable odpovídající katalogovému CLI nástroji. Child procesy spuštěné z AI tool parentu se přiřazují k tomuto parentu.
+- Pro každý nalezený běžící nástroj ukaž: tool ID, název, kategorii, stav GUI (ano/ne), stav CLI (ano/ne), PID parent procesu (pokud CLI), PPID, executable parentu a plnou cestu k runtime executable.
+- Sken se spouští výhradně akcí uživatele; neprováděj polling ani sledování na pozadí.
 
-### Cvičení 5 — Procesy s MCP metadaty
+### Cvičení 5 — Konfigurace a bezpečnostní analýza EXO clusteru
 
-- Použij sdílený procesní snapshot z cvičení 4. Jedna akce `Refresh` vytvoří nejvýše jeden nový snapshot pro oba přehledy.
-- Nález vznikne při doslovné shodě `mcp` bez rozlišení velikosti písmen v executable nebo argumentech procesu. Ukaž PID, PPID, executable a parent proces, ale nezobrazuj celé argumenty.
-- Výsledek označ jako `Process metadata contains mcp`. Nepotvrzuje aktivní MCP spojení, konkrétní server ani vlastnictví procesu.
+- Cílem je získat kompletní konfiguraci běžících AI toolů a provést jejich bezpečnostní analýzu na EXO clusteru.
+- Pro každý běžící AI tool (z cvičení 4) získej:
+  - **Konfiguraci**: Hledej konfigurační soubory v `~/.opencode/`, `~/.config/opencode/`, `/etc/` a v pracovním adresáři procesu. Podporované formáty: `opencode.json`, `opencode.jsonc`, `opencode.yaml`, `opencode.yml`.
+  - **MCP servery**: Z katalogu běžících procesů extrahuj argumenty obsahující `mcp`, `server`, `transport` nebo `connection`. Ty označ jako potenciální MCP konfiguraci.
+  - **Bezpečnostní metadata**: Získej digitální podpis (codesign -dv), certifikát (codesign -dv --verbose=4), a zkontroluj zda je binary signován validním vývojářským certifikátem.
+- **EXO cluster analýza**:
+  - Porovnej konfiguraci běžících AI toolů s lokální `opencode.jsonc` v rootu projektu.
+  - Identifikuj rozdíly v modelových nastaveních, MCP server konfiguracích a bezpečnostních politikách.
+  - Zkontroluj zda běžící tool používá stejný EXO cluster endpoint jako lokální konfigurace.
+  - Vyhodnoť zda jsou API klíče a tokeny referencovány přes environment variablu nebo hardcodované.
+- Výstup: Pro každý běžící tool ukaž sekci s konfigurací (cesta k souboru, obsah v preformátovaném textu), MCP servery (seznam detekovaných serverů a jejich transport), bezpečnostní stav (signován/nesignován, certifikát), a EXO cluster konzistenci (shoda s lokální konfigurací, rozdíly).
+- Sken se spouští akcí uživatele. I/O operace čtou soubory a procesní metadata pouze pro čtení.
 
 ### Společný stav a výsledek
 
