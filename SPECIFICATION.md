@@ -4,7 +4,7 @@ Implementační kontrakt pro cvičení. Prompt určuje cíl; tento dokument urč
 
 ## Společná pravidla
 
-- Cesty v tomto dokumentu jsou relativní k rootu repozitáře. Funkční požadavky neudávají názvy nových Swift souborů; před změnou vždy prozkoumej aktuální strukturu projektu.
+- Cesty v tomto dokumentu jsou relativní k rootu repozitáře. Hodnoty cest uložené v `AITools.json` naopak popisují lokální filesystem uživatele a nejsou relativní k repozitáři. Funkční požadavky neudávají názvy nových Swift souborů; před změnou vždy prozkoumej aktuální strukturu projektu.
 - Minimum deployment target je macOS 14.0. Inventarizace je lokální a pouze pro čtení, bez změny konfigurace, vyšších oprávnění, nových závislostí, telemetrie a odesílání dat.
 - Zobrazuj jen hodnoty explicitně vrácené macOS nebo katalogem. Používej zdokumentované veřejné API nebo stabilní systémový nástroj; nevymýšlej interní klíče, cesty ani formáty.
 - Služby Foundation zjišťují data; SwiftUI pohledy vykreslují modely a vyvolávají akce.
@@ -55,22 +55,24 @@ Jediným zdrojem produktových metadat je `MacAdminInspector/Resources/AITools.j
 
 ### Cvičení 4 — Lokální revize AI konfigurací
 
-Přidej samostatný panel **AI Configs**. Všechny výsledky jsou externí lokální zdroj: aplikace je nesmí vydávat za lokálně ověřený bezpečnostní stav. Panel nic nespouští, nemění, nenahrává ani nesdílí přes síť.
+Přidej samostatný panel **AI Configs**. Výsledky označ jako `Local configuration source`; jejich hodnoty jsou neověřený obsah uživatelských konfigurací, nikoli lokálně ověřený bezpečnostní stav. Panel nic nespouští, nemění, nenahrává ani nesdílí přes síť.
 
 #### Katalogová data
 
-- Volitelné `configSearch` nástroje obsahuje `paths`, neprázdné pole katalogově deklarovaných adresářů, `recursive`, `includePatterns` a `excludePatterns`. Jednotlivé soubory se vyhledávají jako přesný include pattern v některém z těchto adresářů.
+- Volitelné `configSearch` nástroje obsahuje `paths`, neprázdné pole katalogově deklarovaných adresářů, `recursive`, `includePatterns`, `excludePatterns` a volitelné `excludeDirectoryPatterns`. Jednotlivé soubory se vyhledávají jako přesný include pattern v některém z těchto adresářů.
 - Každá cesta v `paths` začíná přesně `~/` nebo `/`. Aplikace rozbalí pouze úvodní `~/` přes `FileManager.default.homeDirectoryForCurrentUser`; odmítne relativní cesty, proměnné prostředí a segment `..`. Pro cestu `~/` musí být `recursive` vždy `false`.
 - `includePatterns` a `excludePatterns` jsou jednoduché globy porovnávané pouze se jménem souboru; podporují jen `*`, nikoli regulární výrazy ani oddělovač cesty. Kandidát musí odpovídat alespoň jednomu include patternu; exclude pattern má vždy přednost. Pro každý nástroj zahrň alespoň `auth.json`, `credentials.json`, `keys.json`, `secrets.yaml`, `.env` a `.env.*` mezi `excludePatterns`.
+- `excludeDirectoryPatterns` jsou volitelné jednoduché globy porovnávané pouze se jménem adresáře. Shodný adresář přeskoč před načtením jeho obsahu; pattern `cache` proto vyloučí `cache` i v libovolném vnoření pod deklarovanou cestou.
 - Cesty, přípony, výjimky ani názvy souborů neodvozuj ze jména nástroje. Nástroj bez `configSearch` nemá žádné kandidáty.
 
 #### Hledání a náhled
 
 - Při prvním otevření panelu proveď právě jeden lokální scan; `Refresh` jej provede znovu. Rekurze je povolená pouze pod existujícími katalogovými adresáři, s maximální hloubkou 2, nejvýše 100 kandidáty celkem a nejvýše 64 KiB na soubor.
-- Zpracuj pouze běžný soubor s povolenou příponou. Neprocházej symlinky; po kanonizaci musí každý soubor zůstat uvnitř kanonické deklarované cesty. Chybějící, nečitelný, příliš velký nebo binární soubor zobraz jako `Unavailable` s důvodem.
+- Zpracuj pouze běžný soubor odpovídající alespoň jednomu `includePatterns`. Neprocházej symlinky; po kanonizaci musí každý soubor zůstat uvnitř kanonické deklarované cesty. Chybějící, nečitelný, příliš velký nebo binární soubor zobraz jako `Unavailable` s důvodem.
 - Výsledkový seznam obsahuje `Tool`, `Category`, `Path`, `Format`, `Size` a stav náhledu. Cesta je označitelná; každý výsledek zobrazuje samostatný `GroupBox` ve stejném layoutu jako ostatní inventarizační karty.
-- Obsah načti až po výslovné akci uživatele nad konkrétním souborem. Redigovaný náhled podporuje pouze JSON a JSONC do limitu velikosti; JSONC nejprve převeď na JSON lexerem, který respektuje řetězce, řádkové i blokové komentáře a koncové čárky. YAML a TOML lze evidovat v seznamu, ale jejich náhled zobraz jako `Unavailable` s důvodem `Structured preview unsupported`; nepřidávej závislost jen kvůli jejich parsování.
-- Pro podporovaný obsah vytvoř strukturovaný redigovaný náhled: hodnotu klíče, jehož název po normalizaci obsahuje `token`, `key`, `secret`, `password`, `authorization` nebo `credential`, vždy nahraď textem `REDACTED`. Při neplatném JSON nebo JSONC zobraz `Unavailable` s důvodem.
+- Obsah načti až po výslovné akci uživatele nad konkrétním souborem. JSON a JSONC zobraz jako strukturovaný redigovaný náhled do limitu velikosti; JSONC nejprve převeď na JSON lexerem, který respektuje řetězce, řádkové i blokové komentáře a koncové čárky. YAML a TOML zobraz jako redigovaný textový náhled; nepřidávej závislost jen kvůli jejich parsování.
+- Ve strukturovaném JSON/JSONC náhledu hodnotu klíče, jehož název po normalizaci obsahuje `token`, `key`, `secret`, `password`, `authorization` nebo `credential`, vždy nahraď textem `REDACTED`. Při neplatném JSON nebo JSONC zobraz `Unavailable` s důvodem.
+- V textovém YAML/TOML náhledu rediguj hodnotu každé položky klíč–hodnota se stejným citlivým názvem klíče, a to pro zápis s `:` i `=`; hodnota i případný navazující odsazený blok se nahradí textem `REDACTED`. Nerozpoznané nebo nejednoznačné zápisy raději nezobrazuj jako nezkontrolovaný obsah.
 - Blokované soubory z `excludePatterns` nikdy nečti ani nezobrazuj. Redakce je ochranná vrstva, ne důkaz absence tajných údajů; proto nikdy nezobrazuj neupravený obsah a náhled označ jako `Redacted local configuration`.
 
 #### Stav a ověření
@@ -84,3 +86,35 @@ Přidej samostatný panel **AI Configs**. Všechny výsledky jsou externí loká
 - Každý přehled vlastní stav `idle/loading/loaded/error`, výsledky, počet zkontrolovaných položek a jedinou úlohu svého scanu. I/O běží mimo MainActor.
 - Akce vyvolaná z pohledu předá řízení view modelu; pohled přímo nevytváří `Task`, nečeká synchronně na službu ani nemění výsledky scanu.
 - Při selhání nebo nejednoznačném výsledku zobraz `Unavailable` a zdroj; nesupluj jej odhadem.
+
+## Testování a ověření
+
+- Unit testy pro služby: parsování výstupů, error handling, edge cases (prázdný výstup, timeout, neplatná data).
+- UI testy: navigace mezi kartami, refresh akce, zobrazení stavů (idle, loading, loaded, error, prázdný výsledek).
+- Ověř, že scan běží mimo MainActor a výsledky se vrací na MainActor.
+- Testuj cancellation: scan se musí zastavit při opuštění panelu nebo zrušení Tasku.
+
+## UI kontrakt
+
+- Layout: `ScrollView` s paddingem 32, GroupBox s Grid řádky, řádky mají `foregroundStyle(.secondary)` pro label a `textSelection(.enabled)` pro hodnotu.
+- Stavové obrazovky:
+  - `idle`: Nic nezobraz, scan se spustí automaticky při `onAppear`. `onAppear` smí pouze zavolat idempotentní akci view modelu; pohled nesmí vytvářet úlohu ani přímo spouštět službu.
+  - `loading`: Indeterminate `ProgressView` se zprávou "Scanning..." nebo "Loading...".
+  - `loaded`: Výsledky nebo "No X found." pro prázdný výsledek.
+  - `error`: Zpráva "Error loading X" a detail chyby v `font(.caption)` s `foregroundStyle(.secondary)`.
+- Toolbar: Refresh button s ikonou `arrow.clockwise`, zakázán během `loading`.
+- Accessibility: Všechny GroupBox řádky mají meaningful labels pro VoiceOver.
+
+## Performance limity
+
+- CLI timeout: 3 sekundy na jeden nástroj.
+- Souborové hledání: max hloubka 2, max 100 kandidátů, max 64 KiB na soubor.
+- Stream buffering: max 4 KiB na stdout/stderr pro CLI výstupy.
+- Scan cancellation: starší scan nesmí přepsat novější výsledek.
+
+## Build a lint
+
+- Deployment target: macOS 14.0.
+- SwiftLint: pokud je v projektu již nakonfigurován a dostupný přes povolený nástroj, spusť jej před dokončením a oprav jeho varování.
+- Formátování: 4-space indentation, max 120 znaků na řádek, žádné trailing whitespace.
+- Build musí být bez chyb a varování.
