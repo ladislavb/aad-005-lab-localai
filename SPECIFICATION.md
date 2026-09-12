@@ -1,6 +1,6 @@
 # Specification — MacAdminInspector Lab
 
-Implementační reference pro cvičení. Prompt má stručně říct, co se má přidat, a odkázat na odpovídající sekci zde.
+Implementační reference pro cvičení. Prompt má stručně říct, co se má přidat, a odkázat na příslušnou sekci zde.
 
 ## Společná pravidla
 
@@ -18,11 +18,20 @@ Implementační reference pro cvičení. Prompt má stručně říct, co se má 
 
 ## Bezpečnostní inventarizace
 
-Funkce zahrnuje MDM, FileVault 2, firewall, Gatekeeper a XProtect.
+### Účel
 
-- Každá kontrola je samostatná Foundation služba s výsledkem, dostupností a pojmenovaným zdrojem.
-- Pokud macOS hodnotu nevrátí nebo by zdroj potřeboval vyšší oprávnění, ukaž `Unavailable` a krátký důvod; oprávnění nevynucuj.
-- Kontroly nesmí měnit systémovou konfiguraci ani používat síť.
+Přidej kartu **Security** s lokálními, pouze čtecími výsledky pro MDM, FileVault 2, firewall, Gatekeeper a XProtect.
+
+### Smlouva
+
+- Každá kontrola má samostatnou Foundation službu; služba vybere přiměřený lokální zdroj pouze pro čtení a UI vždy uvede jeho název.
+- `SecuritySnapshot` vždy obsahuje všech pět položek. Každá položka obsahuje zobrazovaný stav, zdroj a případně důvod nedostupnosti.
+- `SecurityView` vždy vykreslí pět pojmenovaných GroupBoxů. Nezobrazuje společný prázdný stav.
+- Neúspěšný zdroj, neznámý výstup nebo nedostatek oprávnění znamená `Unavailable`, nikoli `nil`.
+- Textový výstup normalizuj oříznutím mezer a bez rozlišení velikosti písmen. Jednoznačné hodnoty `true`, `yes`, `on`, `enabled`, `active` nebo `enrolled` mapuj na pozitivní stav; `false`, `no`, `off`, `disabled`, `inactive` nebo `not enrolled` na negativní stav.
+- Nejednoznačný text nemapuj; ukaž `Unavailable` se stručným důvodem. XProtect zobrazuje jen explicitně nalezenou verzi či datum definic se zdrojem `XProtect definitions`; tyto údaje nepotvrzují aktivní ochranu, aktuálnost definic ani nepřítomnost malwaru.
+- Pohledy nespouštějí procesy. Kontroly nesmí měnit konfiguraci, vyžadovat vyšší oprávnění ani používat síť.
+
 
 ## AI nástroje
 
@@ -39,7 +48,7 @@ Jediným zdrojem metadat je `MacAdminInspector/Resources/AITools.json`; produkto
 - Modely jsou v `Models/AIToolCatalog.swift`, logika v jediné `AIToolDetectionService`.
 - GUI hledej jen přes `NSWorkspace.shared.urlForApplication(withBundleIdentifier:)`.
 - CLI hledej přes `FileManager.default.isExecutableFile(atPath:)` v deklarovaných cestách; `~/` rozbal přes `homeDirectoryForCurrentUser`.
-- Pokud katalogová položka obsahuje `gui` i `cli` a GUI aplikace byla nalezena, ověř také přesnou cestu `<URL aplikace>/Contents/MacOS/<název z cli.executables>`. `.app` procházej rekurzivně, ale jen uvnitř nalezeného bundle; binární název neodvozuj.
+- Pokud katalogová položka obsahuje `gui` i `cli` a GUI aplikace byla nalezena, nejprve ověř `<URL aplikace>/Contents/MacOS/<název z cli.executables>` a potom můžeš rekurzivně procházet jen tento `.app` bundle. Binární název neodvozuj.
 - Nepoužívej shell, `which`, `Process`, `--version`, rekurzivní procházení mimo nalezené `.app`, XPC ani síť.
 
 ### Stav a hotovo
