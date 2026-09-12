@@ -98,7 +98,7 @@
         "paths": ["~/.config/opencode"],
         "recursive": true,
         "includePatterns": ["*.json", "*.jsonc"],
-        "excludePatterns": ["auth.json", "credentials.json", "keys.json", "secrets.yaml", ".env", ".env.*"]
+        "excludePatterns": ["package.json","auth.json", "credentials.json", "keys.json", "secrets.yaml", ".env", ".env.*"]
       }
     },
     {
