@@ -7,6 +7,7 @@ Implementační reference pro cvičení. Prompt má stručně říct, co se má 
 - Minimum deployment target je macOS 14.0.
 - Inventarizace je lokální a pouze pro čtení: bez změny konfigurace, administrátorských práv, nových závislostí, telemetrie a odesílání dat.
 - Zobrazuj jen hodnoty explicitně vrácené macOS nebo deklarované katalogem. Jinak použij `Unavailable`.
+- Pro systémové údaje používej pouze zdokumentované veřejné macOS API nebo stabilní systémový nástroj. Nevymýšlej si názvy IORegistry klíčů, souborové cesty ani interní formáty; není-li podporovaný lokální zdroj, vrať `Unavailable` a uveď důvod.
 - Služby Foundation zjišťují data; SwiftUI pohledy je pouze vykreslují.
 
 ## Overview a Network
@@ -20,7 +21,7 @@ Implementační reference pro cvičení. Prompt má stručně říct, co se má 
 
 ### Účel
 
-Přidej kartu **Security** s lokálními, pouze čtecími výsledky pro MDM, FileVault 2, firewall, Gatekeeper a XProtect.
+Přidej kartu **Security** s lokálními, pouze čtecími výsledky pro MDM, FileVault 2, firewall, Gatekeeper a SIP.
 
 ### Smlouva
 
@@ -29,8 +30,11 @@ Přidej kartu **Security** s lokálními, pouze čtecími výsledky pro MDM, Fil
 - `SecurityView` vždy vykreslí pět pojmenovaných GroupBoxů. Nezobrazuje společný prázdný stav.
 - Neúspěšný zdroj, neznámý výstup nebo nedostatek oprávnění znamená `Unavailable`, nikoli `nil`.
 - Textový výstup normalizuj oříznutím mezer a bez rozlišení velikosti písmen. Jednoznačné hodnoty `true`, `yes`, `on`, `enabled`, `active` nebo `enrolled` mapuj na pozitivní stav; `false`, `no`, `off`, `disabled`, `inactive` nebo `not enrolled` na negativní stav.
-- Nejednoznačný text nemapuj; ukaž `Unavailable` se stručným důvodem. XProtect zobrazuje jen explicitně nalezenou verzi či datum definic se zdrojem `XProtect definitions`; tyto údaje nepotvrzují aktivní ochranu, aktuálnost definic ani nepřítomnost malwaru.
+- Nejednoznačný text nemapuj; ukaž `Unavailable` se stručným důvodem.
+- Application Firewall zobrazuje globální stav, `Block all incoming connections` a `Stealth mode`. Každou hodnotu zjišťuj a vyhodnocuj samostatně; nedostupná hodnota je `Unavailable`. Nezobrazuj seznam aplikací ani pravidel.
 - Pohledy nespouštějí procesy. Kontroly nesmí měnit konfiguraci, vyžadovat vyšší oprávnění ani používat síť.
+- Používá-li služba `Process`, nepřebírá cestu z PATH ani ji neodhaduje: pracuje s ověřenou absolutní cestou, před spuštěním ověří její spustitelnost a při selhání uvede použitou cestu i důvod v `Unavailable`.
+- Před dokončením se ručně porovná výsledek aplikace s výstupem stejného systémového příkazu spuštěného se stejnou absolutní cestou.
 
 
 ## AI nástroje
