@@ -7,8 +7,8 @@ MacAdminInspector je malá SwiftUI lab aplikace pro macOS 14+. Zachovej její om
 Xcode MCP je jediný autoritativní nástroj pro práci s tímto projektem.
 
 - Přes Xcode MCP prohlížej soubory, upravuj Swift a zdroje, přidávej či odebírej soubory, měň nastavení targetu, spravuj schémata, sestavuj, testuj, spouštěj a debuguj.
-- Žádný soubor v projektu neupravuj přes shell, filesystem API ani obecný patchovací či editační nástroj. Týká se to i `.swift`, `.json`, `.plist`, `.entitlements`, `.xcodeproj`, `.xcworkspace`, schémat a build nastavení.
-- Pro tento projekt nevolej `xcodebuild`, `swift`, `swiftc` ani jiné příkazové nástroje pro sestavení či debug.
+- Pro tento projekt je zakázáno používat nástroje `edit`, `write`, `bash` pro jakékoli soubory v repozitáři. Týká se to i `.swift`, `.json`, `.plist`, `.entitlements`, `.xcodeproj`, `.xcworkspace`, schémat a build nastavení.
+- Pro tento projekt nevolej `xcodebuild`, `swift`, `swiftc`, `grep`, `find`, `cat`, `ls` ani jiné příkazové nástroje pro sestavení, debug nebo prohlížení projektu.
 - `project.pbxproj` nikdy neměň ručně; členství souborů a build fáze spravuje Xcode MCP.
 - Není-li Xcode MCP dostupné nebo nezvládne potřebnou operaci, zastav se a oznam blokaci. Nepoužívej přímou či příkazovou náhradu.
 
