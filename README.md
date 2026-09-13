@@ -77,13 +77,25 @@ Před změnami prozkoumej aktuální strukturu projektu. Zachovej existující s
 Funkce je lokální a pouze pro čtení: nic nespouští, nemění ani neodesílá. Ověř nalezené cesty, redakci náhledů a stavy nedostupnosti, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
 
+### Cvičení 5 — Security Audit přes OpenAI-compatible endpoint
+
+Přidej nastavení OpenAI-compatible endpointu a panel Security Audit. Uživatel nejprve lokálně připraví a zkontroluje úplný redigovaný snapshot; síťový požadavek odešle až samostatným potvrzením.
+
+```text
+Pracuj od rootu repozitáře. Přečti `AGENTS.md`, sekci „Cvičení 5 — Security Audit přes OpenAI-compatible endpoint“ v `SPECIFICATION.md` a `MacAdminInspector/Resources/SecurityAuditPrompt.md`.
+
+Před změnami prozkoumej aktuální strukturu projektu. Zachovej existující sekce a globální vzhled aplikace; přidej pouze nezbytné nastavení endpointu a panel Security Audit podle specifikace.
+
+Žádná data neodesílej při otevření panelu, při přípravě snapshotu ani při změně nastavení. Odeslání je možné až po zobrazení přesného redigovaného payloadu a samostatném potvrzení uživatele. Ověř, že payload neobsahuje tajemství ani lokální cesty, ověř úspěšný i chybový HTTP scénář, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
+```
+
 ## Dokončení cvičení
 
 Po dokončení uveď změněné soubory, výsledek sestavení, ručně ověřenou cestu a systémová omezení. Podrobné akceptační podmínky jsou ve specifikaci.
 
 ## Soukromí a bezpečnost
 
-Inventarizační data zůstávají na Macu. Nové funkce nesmějí data nahrávat, měnit konfiguraci zařízení ani zpřístupňovat přihlašovací údaje. Externí zdroj je možný jen po výslovném schválení a musí být v UI pojmenován.
+Inventarizační data zůstávají na Macu. Nové funkce nesmějí data nahrávat, měnit konfiguraci zařízení ani zpřístupňovat přihlašovací údaje. Výjimkou je Cvičení 5: externí endpoint je možný jen po výslovném potvrzení konkrétního odeslání a musí být v UI pojmenován.
 
 ## Licence
 
