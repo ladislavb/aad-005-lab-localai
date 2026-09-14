@@ -18,27 +18,49 @@ Aplikace cílí na macOS 14+ a obsahuje:
 
 Podrobná pravidla těchto funkcí jsou ve SPECIFICATION.
 
-## Otevření a spuštění
-
-1. Otevři [MacAdminInspector.xcodeproj](MacAdminInspector.xcodeproj) v Xcode 16 nebo novějším.
-2. Vyber **My Mac** a spusť aplikaci.
-
-Výchozí inventarizace nevyžaduje administrátorská práva, externí účet ani telemetrii.
-
 ## Workshop
 
 Každé cvičení řeš samostatně a před zahájením vytvoř commit jako kontrolní bod. Prompt určuje cíl; přesné funkční požadavky jsou v [SPECIFICATION.md](SPECIFICATION.md). Všechny uvedené cesty jsou relativní k rootu repozitáře.
 
-### Cvičení 1 — OpenCode a Exo cluster
+### Prvotní nastavení Xcode
 
-Nastav OpenCode jako agenta v Xcode a ověř jeho napojení na Exo cluster a MCP.
+1. Otevři Xcode a vyber `New Project > App`
+2. Jdi do menu `Xcode > Settings > Intelligence`
+3. V sekci `Agents` klikni na `Add an agent...`
+4. Nastav:
+    - Name: `opencode`
+    - Executable: `/opt/homebrew/bin/opencode`
+    - V části `Arguments` přidej `acp`
+    - Klikni na `Save`
+5. V Sekci `Model Context Protocol` ověř nastavení `Allow External Agents to Use Xcode Tools`. Musí být `Always` nebo `While Xcode is Open`
+6. Zavři nastavení
+
+Pokračuj naklonováním repozitáře:
+
+1. Menu `Integrate` > `Clone...` > `https://github.com/ladislavb/aad-005-lab-localai.git` > `Clone`
+2. Ulož projekt do Documents
+
+Spusť `Terminal` a přepni se do adresáře s naklonovaným projektem:
 
 ```text
-Pracuj od rootu repozitáře. Přečti `AGENTS.md` a sekci „Cvičení 1 — OpenCode a Exo cluster“ v `SPECIFICATION.md`.
+cd ~/Documents/aad-005-lab-localai
+```
 
-Nakonfiguruj a ověř OpenCode jako agenta v Xcode podle specifikace. Sdílenou konfiguraci ukládej pouze do `opencode.jsonc` v rootu repozitáře; do repozitáře neukládej přihlašovací údaje, tokeny ani API klíče.
+Spusť opencode cli
 
-Neměň zdrojový kód aplikace. Uveď použitý model, stav připojení k Exo a stav MCP nástrojů nebo konkrétní omezení, které ověření zabránilo.
+```text
+opencode
+```
+
+### Cvičení 1 — OpenCode a Exo cluster
+
+V opencode cli ověř napojení na Exo cluster a MCP následujícím promptem.
+
+```text
+Ověř, že je projekt správně napojený na EXO cluster a že Xcode MCP funguje.
+Pomocí Xcode MCP prozkoumej aktuálně otevřený projekt, jeho strukturu, targety a konfiguraci.
+Zkontroluj, jestli nevidíš nějaké problémy nebo chyby.
+Nic neměň, pouze mi shrň, co jsi zjistil.
 ```
 
 ### Cvičení 2 — Bezpečnostní inventarizace
@@ -88,14 +110,6 @@ Před změnami prozkoumej aktuální strukturu projektu. Zachovej existující s
 
 Žádná data neodesílej při otevření panelu, při přípravě snapshotu ani při změně nastavení. Odeslání je možné až po zobrazení přesného redigovaného payloadu a samostatném potvrzení uživatele. Ověř, že payload neobsahuje tajemství ani lokální cesty, ověř úspěšný i chybový HTTP scénář, sestav schéma MacAdminInspector v Xcode a uveď změněné soubory, výsledek sestavení a omezení systému.
 ```
-
-## Dokončení cvičení
-
-Po dokončení uveď změněné soubory, výsledek sestavení, ručně ověřenou cestu a systémová omezení. Podrobné akceptační podmínky jsou ve specifikaci.
-
-## Soukromí a bezpečnost
-
-Inventarizační data zůstávají na Macu. Nové funkce nesmějí data nahrávat, měnit konfiguraci zařízení ani zpřístupňovat přihlašovací údaje. Výjimkou je Cvičení 5: externí endpoint je možný jen po výslovném potvrzení konkrétního odeslání a musí být v UI pojmenován.
 
 ## Licence
 
