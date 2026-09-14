@@ -20,7 +20,7 @@ Podrobná pravidla těchto funkcí jsou ve SPECIFICATION.
 
 ## Workshop
 
-Každé cvičení řeš samostatně a před zahájením vytvoř commit jako kontrolní bod. Prompt určuje cíl; přesné funkční požadavky jsou v [SPECIFICATION.md](SPECIFICATION.md). Všechny uvedené cesty jsou relativní k rootu repozitáře.
+Každé cvičení řeš samostatně. Prompt určuje cíl; přesné funkční požadavky jsou v [SPECIFICATION.md](SPECIFICATION.md). Všechny uvedené cesty jsou relativní k rootu repozitáře.
 
 ### Prvotní nastavení Xcode
 
