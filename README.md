@@ -28,10 +28,12 @@ Každé cvičení řeš samostatně. Prompt určuje cíl; přesné funkční po�
 2. Jdi do menu `Xcode > Settings > Intelligence`
 3. V sekci `Agents` klikni na `Add an agent...`
 4. Nastav:
-    - Name: `opencode`
+    - Name: `OpenCode`
     - Executable: `/opt/homebrew/bin/opencode`
     - V části `Arguments` přidej `acp`
     - Klikni na `Save`
+    ![Nastavení agenta](agent_settings.png)
+
 5. V Sekci `Model Context Protocol` ověř nastavení `Allow External Agents to Use Xcode Tools`. Musí být `Always` nebo `While Xcode is Open`
 6. Zavři nastavení
 
@@ -39,6 +41,8 @@ Pokračuj naklonováním repozitáře:
 
 1. Menu `Integrate` > `Clone...` > `https://github.com/ladislavb/aad-005-lab-localai.git` > `Clone`
 2. Ulož projekt do Documents
+3. Spusť build aplikace - ikona Play
+4. Otestuj aplikaci a pak ji zase ukonči - ikona Stop v Xcode
 
 Spusť `Terminal` a přepni se do adresáře s naklonovaným projektem:
 
